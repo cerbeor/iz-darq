@@ -1,0 +1,57 @@
+.about-page-title {
+  background-color: white;
+  text-align: center;
+  display: flex;
+  align-items: center;
+}
+
+.about-page-content {
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  overflow: scroll;
+  padding-top: 30px;
+}
+
+.about-container {
+  width: 100%;
+  max-width: 1100px;
+  padding: 0 50px 50px 50px;
+}
+
+.panel-about {
+  margin-bottom: 20px;
+  border: 1px solid #bce8f1;
+  border-radius: 4px;
+
+  .panel-heading {
+    padding: 10px 15px;
+    background-color: #d9edf7;
+    border-bottom: 1px solid #bce8f1;
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    color: #31708f;
+  }
+
+  .panel-body {
+    padding: 15px;
+
+    p {
+      text-align: justify;
+    }
+
+    p:last-child {
+      margin-bottom: 0;
+    }
+
+    table {
+      margin-bottom: 0;
+    }
+  }
+}
+
+.no-release-notes {
+  color: #6c757d;
+  font-style: italic;
+  text-align: center;
+}

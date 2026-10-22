@@ -16,6 +16,7 @@ import {UpdateProfileComponent} from './modules/core/components/update-profile/u
 import {ForgotPasswordComponent} from './modules/core/components/forgot-password/forgot-password.component';
 import {ResetPasswordComponent} from './modules/core/components/reset-password/reset-password.component';
 import {DownloadComponent} from './modules/core/components/download/download.component';
+import {AboutComponent} from './modules/core/components/about/about.component';
 
 
 const routes: Routes = [
@@ -37,6 +38,10 @@ const routes: Routes = [
   {
     path: 'download',
     component: DownloadComponent,
+  },
+  {
+    path: 'about',
+    component: AboutComponent,
   },
   {
     path: 'forgotten-password',

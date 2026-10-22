@@ -15,6 +15,7 @@ import {VerifyEmailComponent} from './components/verify-email/verify-email.compo
 import {UpdateProfileComponent} from './components/update-profile/update-profile.component';
 import {ResetPasswordComponent} from './components/reset-password/reset-password.component';
 import {DownloadComponent} from './components/download/download.component';
+import {AboutComponent} from './components/about/about.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import {DownloadComponent} from './components/download/download.component';
     UpdateProfileComponent,
     ResetPasswordComponent,
     DownloadComponent,
+    AboutComponent,
   ],
   imports: [
     CommonModule,
@@ -47,6 +49,7 @@ import {DownloadComponent} from './components/download/download.component';
     ForgotPasswordComponent,
     UpdateProfileComponent,
     DownloadComponent,
+    AboutComponent,
   ],
 })
 export class CoreModule { }

@@ -13,6 +13,7 @@
     <li class="nav-item" routerLink="download" routerLinkActive="active">
       <a class="nav-link">Download</a>
     </li>
+
     <li class="nav-item" [routerLink]="['/', 'adf', 'dashboard']" routerLinkActive="active">
       <a class="nav-link">Dashboard</a>
     </li>
@@ -30,6 +31,9 @@
     </li>
     <li class="nav-item" routerLink="administration" routerLinkActive="active" *ngIf="(isAdmin$ | async) === true">
       <a class="nav-link">Administration Panel</a>
+    </li>
+    <li class="nav-item" routerLink="about" routerLinkActive="active">
+      <a class="nav-link"><i class="fa fa-question-circle"></i> About</a>
     </li>
   </ul>
   <ul *ngIf="(isLogged$ | async) === false" class="navbar-nav">
