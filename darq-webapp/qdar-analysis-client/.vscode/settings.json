@@ -34,7 +34,8 @@
     "commandCenter.foreground": "#e7e7e7",
     "statusBar.debuggingBackground": "#210b46",
     "statusBar.debuggingForeground": "#e7e7e7",
-    "activityBarTop.activeBorder": "#e7e7e7"
+    "activityBarTop.activeBorder": "#e7e7e7",
+    "statusBar.inactiveBackground": "#210b46"
   },
   "peacock.color": "#210b46"
 }

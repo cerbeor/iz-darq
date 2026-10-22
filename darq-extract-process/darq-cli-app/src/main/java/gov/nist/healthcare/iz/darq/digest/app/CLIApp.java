@@ -115,7 +115,7 @@ public class CLIApp {
 				String prefix = cmd.hasOption(S_OPT) ? cmd.getOptionValue(S_OPT) : timestampFormat.format(timestamp);
 
 				System.out.println("===================================================================================================");
-				System.out.println(" [NIST] Welcome to Data At Rest Quality Analysis Command Line Tool " + tag + " ");
+				System.out.println(" [VALITHEUS] Welcome to Data At Rest Quality Analysis Command Line Tool " + tag + " ");
 				System.out.println("===================================================================================================");
 
 				boolean patientParamMissing = !cmd.hasOption(P_OPT);

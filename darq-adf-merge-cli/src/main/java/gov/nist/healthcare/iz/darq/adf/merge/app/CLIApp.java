@@ -82,7 +82,7 @@ public class CLIApp {
                     String filePaths = cmd.getOptionValue("f");
                     String destination = cmd.hasOption("d") ? cmd.getOptionValue("d") : "./MERGED_ADF.data";
                     System.out.println("===================================================================================================");
-                    System.out.println(" [NIST] Welcome to Data At Rest Quality ADF Merge Tool [PK: "+ publicKeyHash + "]");
+                    System.out.println(" [VALITHEUS] Welcome to Data At Rest Quality ADF Merge Tool [PK: "+ publicKeyHash + "]");
                     System.out.println("===================================================================================================");
 
                     String[] filePathArray = filePaths.split(":");

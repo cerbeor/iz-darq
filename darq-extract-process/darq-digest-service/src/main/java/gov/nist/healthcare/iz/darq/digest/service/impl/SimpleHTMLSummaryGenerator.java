@@ -194,8 +194,8 @@ public class SimpleHTMLSummaryGenerator implements HTMLSummaryGenerator {
 				a(
 						attrs(".navbar-brand"),
 						span(
-								attrs(".nist"),
-								"NIST"
+								attrs(".valitheus"),
+								"VALITHEUS"
 						),
 						span(
 								attrs(".sub"),

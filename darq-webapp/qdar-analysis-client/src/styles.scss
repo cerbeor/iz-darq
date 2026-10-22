@@ -17,7 +17,7 @@ body {
   font-family: Verdana, Geneva, sans-serif !important;
 }
 
-body .ui-table-dash .ui-table-thead > tr > th {
+body .ui-table-dash .ui-table-thead>tr>th {
   padding: .25em .5em !important;
   border-top: 1px solid #dee2e6 !important;
   border-bottom: 2px solid #dee2e6 !important;
@@ -31,14 +31,14 @@ body .ui-table-dash .ui-table-thead > tr > th {
 }
 
 body .ui-table-dash .ui-sortable-column.ui-state-highlight {
-  background-color: $nist_dark_yellow !important;
+  background-color: $valitheus_dark_yellow !important;
 }
 
 body .ui-table-dash .ui-sortable-column.ui-state-highlight .ui-sortable-column-icon {
-  color:black !important;
+  color: black !important;
 }
 
-body .ui-table-dash .ui-table-tbody > tr > td {
+body .ui-table-dash .ui-table-tbody>tr>td {
   border-left: 0 !important;
   border-right: 0 !important;
   border-bottom: 0 !important;
@@ -50,12 +50,12 @@ body .ui-table-dash .ui-paginator {
 }
 
 .nav-title {
-  background-color: $nist_light_yellow;
+  background-color: $valitheus_light_yellow;
   justify-content: start !important;
 }
 
 .nav-links {
-  background-color: $nist_dark_yellow;
+  background-color: $valitheus_dark_yellow;
   padding: 0px 0px 0px 0px !important;
   justify-content: space-between !important;
   -webkit-box-shadow: 0px 3px 5px -2px rgba(0, 0, 0, 0.75) !important;
@@ -67,13 +67,14 @@ body .ui-table-dash .ui-paginator {
   font-weight: 400;
   margin-left: 20px;
   font-size: 25px;
-  color: #000!important;
+  color: #000 !important;
   bottom: 0;
   padding: 0;
 }
 
 .title-text {
-  margin-bottom: 0; margin-left: 5px;
+  margin-bottom: 0;
+  margin-left: 5px;
 }
 
 .toolname-abbrv {
@@ -96,32 +97,32 @@ li {
 }
 
 li a {
-  color: $nist_dark_blue !important;
+  color: $valitheus_dark_blue !important;
 }
 
 .nav-item:hover {
-  background-color: $nist_light_yellow !important;
+  background-color: $valitheus_light_yellow !important;
   cursor: pointer !important;
 }
 
-.nav-pills  .active {
-  background-color: $nist_light_yellow !important;
-  color: $nist_dark_blue !important;
+.nav-pills .active {
+  background-color: $valitheus_light_yellow !important;
+  color: $valitheus_dark_blue !important;
 }
 
-.navbar-nav  .active {
-  background-color: $nist_light_yellow !important;
-  color: $nist_dark_blue !important;
+.navbar-nav .active {
+  background-color: $valitheus_light_yellow !important;
+  color: $valitheus_dark_blue !important;
 }
 
 .list-group .active {
   border: 1px solid #e9ecef !important;
-  background-color: $nist_light_yellow !important;
-  color: $nist_dark_blue !important;
+  background-color: $valitheus_light_yellow !important;
+  color: $valitheus_dark_blue !important;
 }
 
 .active-dropdown {
-  background-color: $nist_light_yellow !important;
+  background-color: $valitheus_light_yellow !important;
   color: black !important;
 }
 
@@ -142,13 +143,16 @@ dam-fullscreen-button button {
   background-color: #e9ecef;
 }
 
-.ng-valid[required], .ng-valid.required  {
-  border-bottom: 2px solid rgb(114, 196, 118); /* green */
+.ng-valid[required],
+.ng-valid.required {
+  border-bottom: 2px solid rgb(114, 196, 118);
+  /* green */
 }
 
-.ng-invalid:not(form):not(div)  {
+.ng-invalid:not(form):not(div) {
   background-color: $invalid_color !important;
-  border-bottom: 2px solid #d6403d; /* red */
+  border-bottom: 2px solid #d6403d;
+  /* red */
 }
 
 .ngx-contextmenu .disabled {
@@ -190,7 +194,7 @@ dam-fullscreen-button button {
   display: grid;
   grid-gap: 2px;
   grid-template-columns: [page-content] 1fr;
-  grid-template-rows: [alerts] minmax(min-content,max-content) [row-titlebar] minmax(min-content, 45px) [row-content] auto;
+  grid-template-rows: [alerts] minmax(min-content, max-content) [row-titlebar] minmax(min-content, 45px) [row-content] auto;
   overflow: hidden;
   color: #444;
   height: 100%;
@@ -220,7 +224,7 @@ dam-fullscreen-button button {
 }
 
 .section-node-active {
-  background-color: $nist_light_yellow !important;
+  background-color: $valitheus_light_yellow !important;
 }
 
 .section-editor .ui-editor-container {
@@ -240,7 +244,7 @@ dam-fullscreen-button button {
 }
 
 .ui-tabview-nav .valid-tab.ui-state-active {
-  background-color: $nist_light_yellow !important;
+  background-color: $valitheus_light_yellow !important;
   border: 1px solid #d6d6d6e3 !important;
 }
 
@@ -262,10 +266,10 @@ body .pi {
 }
 
 .table-export-btn {
-    opacity: 1 !important;
-    background-color: white !important;
-    border: 0 !important;
-    padding-left: 0 !important;
+  opacity: 1 !important;
+  background-color: white !important;
+  border: 0 !important;
+  padding-left: 0 !important;
 }
 
 .query-list-dialog .mat-dialog-container {
