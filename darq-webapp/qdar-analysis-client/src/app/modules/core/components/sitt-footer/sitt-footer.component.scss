@@ -1,0 +1,25 @@
+// qDAR specific tweaks to the shared SITT footer chrome.
+//
+// The brand sheet (src/sitt-styling.css) is kept as a verbatim copy of the
+// shared source, so app level adjustments live here instead. These selectors
+// are safe to scope to the component because #footer is in its own template.
+
+:host {
+  display: block;
+  width: 100%;
+  background-color: #fff;
+}
+
+#footer {
+  background-color: #fff;
+}
+
+// The brand sheet gives .managed-by a 10px top margin and a top border, which
+// in the original markup separated it from an <hr>. That <hr> is not part of
+// this port, so the margin reads as a white gap between this strip and the
+// .footer-layout band above it, and the border doubles up with that band's own
+// bottom edge. Collapse both.
+#footer .managed-by {
+  margin-top: 0;
+  border-top: 0;
+}
