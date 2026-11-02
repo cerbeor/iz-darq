@@ -296,3 +296,68 @@ body .pi {
 .CodeMirror {
   height: 200px;
 }
+//------
+// App shell layout.
+//
+// dam-main (ngx-dam-framework-legacy) renders:
+//
+//   <block-ui>
+//     <div style="... height: 100%">   <- header + progress bar + router outlet
+//     <ng-container>                   <- footer, a SIBLING of the above
+//   </block-ui>
+//
+// app-root, dam-main and block-ui are all unstyled, so they are inline-level
+// and establish no height for that inner div to resolve its 100% against.
+// The column ends up as tall as the viewport and the footer is pushed below
+// the fold, needing a scroll to reach even on a near empty page.
+//
+// The fix is to make the whole chain one flex column with a definite height,
+// so the content area takes the leftover space and the footer always sits at
+// the bottom of the viewport. Tall pages still scroll, but inside the content
+// area rather than the document, so the footer stays put.
+//
+// The framework's inner div is reached by element path and its inline
+// height is overridden, which is the only part here that needs !important.
+
+app-root {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 0;
+}
+
+app-root > dam-main,
+dam-main > block-ui {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
+// The header/content column. Drops the inline height: 100% so it shares the
+// shell with the footer instead of filling it.
+dam-main > block-ui > div {
+  height: auto !important;
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
+// The router outlet wrapper. overflow was 'scroll', which reserves a gutter
+// even when nothing overflows; 'auto' only scrolls when there is something to
+// scroll, which is what lets a short page sit flush above the footer.
+dam-main > block-ui > div > div {
+  overflow: auto !important;
+}
+
+// Keep the footer at its natural height; it must not be squeezed by a tall
+// content area.
+dam-main > block-ui > app-footer {
+  flex: 0 0 auto;
+}
+
+// block-ui appends its own overlay host after the projected content. The
+// overlay inside it is position: fixed, but the host itself is a normal
+// element and would otherwise be stretched as a flex item.
+dam-main > block-ui > block-ui-content {
+  flex: 0 0 auto;
+}
