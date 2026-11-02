@@ -10,6 +10,9 @@ import {selectCurrentUser} from '../../store/core.selectors';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
+  // sitt-styling.css is global page chrome and is registered in angular.json.
+  // It must not be listed here: view encapsulation would scope its selectors
+  // to this component, so the #footer rules could never reach the footer.
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {

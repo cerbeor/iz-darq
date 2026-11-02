@@ -1,0 +1,46 @@
+<!--
+  Shared SITT page chrome (header band).
+  Ported from fits-webapp/.github/docker/brand/views/header.html.
+  Styling lives in src/sitt-styling.css, which is a verbatim copy of the
+  shared brand sheet and is registered globally in angular.json.
+-->
+<div class="brand" id="appheader">
+  <div class="hosted-lockup">
+    <a class="mb appheader-mb" href="https://valitheus.com" target="_blank" rel="noopener"
+      title="Hosted by Valitheus">
+      <span class="mb-eyebrow">Hosted&nbsp;by</span>
+      <svg class="vt-mark" width="26" height="26" viewBox="0 0 64 64" role="img" aria-label="Valitheus">
+        <defs>
+          <linearGradient id="vt-grad" x1="6" y1="0" x2="50" y2="0" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#0F766E" />
+            <stop offset="1" stop-color="#2DD4BF" />
+          </linearGradient>
+          <pattern id="vt-grid-minor" width="8" height="8" patternUnits="userSpaceOnUse">
+            <path d="M8,0 L0,0 L0,8" fill="none" stroke="rgba(94,234,212,0.07)" stroke-width="0.7" />
+          </pattern>
+          <pattern id="vt-grid-major" width="24" height="24" patternUnits="userSpaceOnUse">
+            <path d="M24,0 L0,0 L0,24" fill="none" stroke="rgba(94,234,212,0.11)" stroke-width="0.7" />
+          </pattern>
+        </defs>
+        <rect width="64" height="64" rx="14" fill="#0F172A" stroke="rgba(255,255,255,0.10)" />
+        <rect x="1" y="1" width="62" height="62" rx="13" fill="url(#vt-grid-minor)" />
+        <rect x="1" y="1" width="62" height="62" rx="13" fill="url(#vt-grid-major)" />
+        <path d="M6,26 L14,26 L16,21 L18,29 L20,26 L24,26 L31,41.5 L50.5,12" fill="none" stroke="url(#vt-grad)"
+          stroke-width="4.4" stroke-linecap="round" stroke-linejoin="round" />
+        <circle cx="50.5" cy="12" r="5" fill="rgba(230,255,250,0.22)" />
+        <circle cx="50.5" cy="12" r="2.1" fill="#E6FFFA" />
+      </svg>
+      <span class="vt-word">VALI<span class="vt-word-accent">THEUS</span></span>
+    </a>
+  </div>
+  <a style="display: inline-block; text-shadow: none" routerLink="/home">
+    <div id="programbrand">
+      <span class="pb-tick"></span>
+      <span class="pb-text">Standards &amp; Interoperability Testing Tools (SITT)</span>
+    </div>
+    <div id="apptitle">
+      <span>Data At Rest Quality Analysis Tool (qDAR)</span>
+      <span style="color: red; font-size: 12px"> v{{ info?.version }}</span>
+    </div>
+  </a>
+</div>

@@ -1,10 +1,6 @@
-<nav class="navbar navbar-light nav-title">
-  <a class="navbar-brand toolbar-name">
-    Data At Rest Quality Analysis Tool
-    <span class="toolname-abbrv">(qDAR)</span>
-    <span class="toolname-version">v{{info?.version}}</span>
-  </a>
-</nav>
+<!-- Shared SITT chrome. It carries the tool name and version, which is why the
+     former .nav-title navbar was removed rather than kept alongside it. -->
+<app-sitt-header [info]="info"></app-sitt-header>
 <nav class="navbar navbar-expand-sm nav-links">
   <ul class="navbar-nav">
     <li class="nav-item" routerLink="home" routerLinkActive="active">

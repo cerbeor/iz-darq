@@ -3,6 +3,8 @@ import {CommonModule} from '@angular/common';
 import {CoreRoutingModule} from './core-routing.module';
 import {HeaderComponent} from './components/header/header.component';
 import {FooterComponent} from './components/footer/footer.component';
+import {SittHeaderComponent} from './components/sitt-header/sitt-header.component';
+import {SittFooterComponent} from './components/sitt-footer/sitt-footer.component';
 import {HomeComponent} from './components/home/home.component';
 import {ErrorPageComponent} from './components/error-page/error-page.component';
 import {DamAuthenticationModule, DamMessagesModule} from '@usnistgov/ngx-dam-framework-legacy';
@@ -21,6 +23,8 @@ import {AboutComponent} from './components/about/about.component';
   declarations: [
     HeaderComponent,
     FooterComponent,
+    SittHeaderComponent,
+    SittFooterComponent,
     HomeComponent,
     ErrorPageComponent,
     RegistrationComponent,
@@ -43,6 +47,8 @@ import {AboutComponent} from './components/about/about.component';
   exports: [
     HeaderComponent,
     FooterComponent,
+    SittHeaderComponent,
+    SittFooterComponent,
     HomeComponent,
     ErrorPageComponent,
     RegistrationComponent,
