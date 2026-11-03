@@ -1,0 +1,7 @@
+Measure Code,Measure Name,Threshold,2023,2023 Outcome,2024,2024 Outcome,% Point Change Improvement,Measure Outcome
+,Measure 1.1 - Patient Completeness [IIS-A],>99%,100.00%,Met,100.00%,Met,0.00%,No Change,
+,Measure 1.2 - Address Completeness [IIS-A],>99%,99.00%,Not Met,99.10%,Met,0.10%,Better,
+,Measure 2.1 - Vaccination Coding [IIS-A],>85%,95.60%,Met,84.00%,Not Met,-11.60%,Worse,
+,Measure 2.2 - Lot Number Presence [IIS-A],>90%,12.34%,Not Met,45.67%,Not Met,33.33%,No Change,
+,Measure 3.1 - Duplicate Patient Rate [IIS-A],<5%,2.10%,Met,1.75%,Met,-0.35%,No Change,
+,Measure 3.2 - Empty Denominator [IIS-A],>50%,0.00%,Not Met,0.00%,Not Met,0.00%,No Change,

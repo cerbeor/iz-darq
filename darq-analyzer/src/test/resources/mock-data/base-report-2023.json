@@ -1,0 +1,313 @@
+{
+  "id" : "mock-report-2023",
+  "name" : "Mock IIS Report 2023",
+  "description" : "Mock report for comparison UI testing",
+  "configuration" : null,
+  "published" : true,
+  "lastUpdated" : null,
+  "customDetectionLabels" : null,
+  "reportTemplate" : {
+    "id" : "mock-template-1",
+    "name" : "Mock Comparison Template",
+    "description" : null,
+    "configuration" : null,
+    "published" : false,
+    "lastUpdated" : null,
+    "customDetectionLabels" : null,
+    "sections" : [ ],
+    "owner" : null,
+    "public" : false
+  },
+  "facilityId" : null,
+  "adfName" : null,
+  "publishDate" : null,
+  "sections" : [ {
+    "id" : "section-1",
+    "path" : "1",
+    "position" : 0,
+    "header" : "Data Quality Measures",
+    "text" : null,
+    "thresholdViolation" : true,
+    "data" : [ {
+      "query" : {
+        "payloadType" : "SIMPLE",
+        "payloadType" : "SIMPLE",
+        "type" : "V",
+        "caption" : "Measure 1.1 - Patient Completeness",
+        "paginate" : false,
+        "rows" : 0,
+        "filter" : null,
+        "denominatorVariable" : null,
+        "numeratorVariable" : null,
+        "filterBy" : null,
+        "nominator" : "PROVIDER",
+        "denominator" : null,
+        "threshold" : {
+          "active" : false,
+          "goal" : {
+            "comparator" : "GT",
+            "value" : 99.0
+          }
+        }
+      },
+      "issues" : null,
+      "thresholdViolation" : false,
+      "nominator" : [ "PROVIDER" ],
+      "denominator" : [ ],
+      "values" : [ {
+        "groupId" : 0,
+        "values" : {
+          "PROVIDER" : "IIS-A"
+        },
+        "result" : {
+          "count" : 10000,
+          "total" : 10000
+        },
+        "adjustedFraction" : null,
+        "threshold" : {
+          "comparator" : "GT",
+          "value" : 99.0
+        },
+        "pass" : true,
+        "effectiveResult" : {
+          "count" : 10000,
+          "total" : 10000
+        }
+      } ]
+    }, {
+      "query" : {
+        "payloadType" : "SIMPLE",
+        "payloadType" : "SIMPLE",
+        "type" : "V",
+        "caption" : "Measure 1.2 - Address Completeness",
+        "paginate" : false,
+        "rows" : 0,
+        "filter" : null,
+        "denominatorVariable" : null,
+        "numeratorVariable" : null,
+        "filterBy" : null,
+        "nominator" : "PROVIDER",
+        "denominator" : null,
+        "threshold" : {
+          "active" : false,
+          "goal" : {
+            "comparator" : "GT",
+            "value" : 99.0
+          }
+        }
+      },
+      "issues" : null,
+      "thresholdViolation" : true,
+      "nominator" : [ "PROVIDER" ],
+      "denominator" : [ ],
+      "values" : [ {
+        "groupId" : 0,
+        "values" : {
+          "PROVIDER" : "IIS-A"
+        },
+        "result" : {
+          "count" : 9900,
+          "total" : 10000
+        },
+        "adjustedFraction" : null,
+        "threshold" : {
+          "comparator" : "GT",
+          "value" : 99.0
+        },
+        "pass" : false,
+        "effectiveResult" : {
+          "count" : 9900,
+          "total" : 10000
+        }
+      } ]
+    }, {
+      "query" : {
+        "payloadType" : "SIMPLE",
+        "payloadType" : "SIMPLE",
+        "type" : "V",
+        "caption" : "Measure 2.1 - Vaccination Coding",
+        "paginate" : false,
+        "rows" : 0,
+        "filter" : null,
+        "denominatorVariable" : null,
+        "numeratorVariable" : null,
+        "filterBy" : null,
+        "nominator" : "PROVIDER",
+        "denominator" : null,
+        "threshold" : {
+          "active" : false,
+          "goal" : {
+            "comparator" : "GT",
+            "value" : 85.0
+          }
+        }
+      },
+      "issues" : null,
+      "thresholdViolation" : false,
+      "nominator" : [ "PROVIDER" ],
+      "denominator" : [ ],
+      "values" : [ {
+        "groupId" : 0,
+        "values" : {
+          "PROVIDER" : "IIS-A"
+        },
+        "result" : {
+          "count" : 9560,
+          "total" : 10000
+        },
+        "adjustedFraction" : null,
+        "threshold" : {
+          "comparator" : "GT",
+          "value" : 85.0
+        },
+        "pass" : true,
+        "effectiveResult" : {
+          "count" : 9560,
+          "total" : 10000
+        }
+      } ]
+    }, {
+      "query" : {
+        "payloadType" : "SIMPLE",
+        "payloadType" : "SIMPLE",
+        "type" : "V",
+        "caption" : "Measure 2.2 - Lot Number Presence",
+        "paginate" : false,
+        "rows" : 0,
+        "filter" : null,
+        "denominatorVariable" : null,
+        "numeratorVariable" : null,
+        "filterBy" : null,
+        "nominator" : "PROVIDER",
+        "denominator" : null,
+        "threshold" : {
+          "active" : false,
+          "goal" : {
+            "comparator" : "GT",
+            "value" : 90.0
+          }
+        }
+      },
+      "issues" : null,
+      "thresholdViolation" : true,
+      "nominator" : [ "PROVIDER" ],
+      "denominator" : [ ],
+      "values" : [ {
+        "groupId" : 0,
+        "values" : {
+          "PROVIDER" : "IIS-A"
+        },
+        "result" : {
+          "count" : 1234,
+          "total" : 10000
+        },
+        "adjustedFraction" : null,
+        "threshold" : {
+          "comparator" : "GT",
+          "value" : 90.0
+        },
+        "pass" : false,
+        "effectiveResult" : {
+          "count" : 1234,
+          "total" : 10000
+        }
+      } ]
+    }, {
+      "query" : {
+        "payloadType" : "SIMPLE",
+        "payloadType" : "SIMPLE",
+        "type" : "V",
+        "caption" : "Measure 3.1 - Duplicate Patient Rate",
+        "paginate" : false,
+        "rows" : 0,
+        "filter" : null,
+        "denominatorVariable" : null,
+        "numeratorVariable" : null,
+        "filterBy" : null,
+        "nominator" : "PROVIDER",
+        "denominator" : null,
+        "threshold" : {
+          "active" : false,
+          "goal" : {
+            "comparator" : "LT",
+            "value" : 5.0
+          }
+        }
+      },
+      "issues" : null,
+      "thresholdViolation" : false,
+      "nominator" : [ "PROVIDER" ],
+      "denominator" : [ ],
+      "values" : [ {
+        "groupId" : 0,
+        "values" : {
+          "PROVIDER" : "IIS-A"
+        },
+        "result" : {
+          "count" : 210,
+          "total" : 10000
+        },
+        "adjustedFraction" : null,
+        "threshold" : {
+          "comparator" : "LT",
+          "value" : 5.0
+        },
+        "pass" : true,
+        "effectiveResult" : {
+          "count" : 210,
+          "total" : 10000
+        }
+      } ]
+    }, {
+      "query" : {
+        "payloadType" : "SIMPLE",
+        "payloadType" : "SIMPLE",
+        "type" : "V",
+        "caption" : "Measure 3.2 - Empty Denominator",
+        "paginate" : false,
+        "rows" : 0,
+        "filter" : null,
+        "denominatorVariable" : null,
+        "numeratorVariable" : null,
+        "filterBy" : null,
+        "nominator" : "PROVIDER",
+        "denominator" : null,
+        "threshold" : {
+          "active" : false,
+          "goal" : {
+            "comparator" : "GT",
+            "value" : 50.0
+          }
+        }
+      },
+      "issues" : null,
+      "thresholdViolation" : true,
+      "nominator" : [ "PROVIDER" ],
+      "denominator" : [ ],
+      "values" : [ {
+        "groupId" : 0,
+        "values" : {
+          "PROVIDER" : "IIS-A"
+        },
+        "result" : {
+          "count" : 0,
+          "total" : 0
+        },
+        "adjustedFraction" : null,
+        "threshold" : {
+          "comparator" : "GT",
+          "value" : 50.0
+        },
+        "pass" : false,
+        "effectiveResult" : {
+          "count" : 0,
+          "total" : 0
+        }
+      } ]
+    } ],
+    "children" : [ ],
+    "comment" : null
+  } ],
+  "owner" : null,
+  "public" : true
+}

@@ -13,11 +13,7 @@ import gov.nist.healthcare.iz.darq.digest.domain.Field;
 import gov.nist.healthcare.iz.darq.digest.domain.Fraction;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -132,8 +128,6 @@ public class ReportComparisonService {
 
                     diff.setThresholdText(formatThreshold(baseRow.getThreshold()));
 
-                    // Assuming Fraction has a way to extract the double/percentage value.
-                    // Replace 'extractPercent' with your actual Fraction math (e.g. fraction.getPercent())
                     diff.setBasePercent(extractPercent(baseRow.getEffectiveResult()));
                     diff.setNewPercent(extractPercent(newRow.getEffectiveResult()));
 
@@ -219,12 +213,11 @@ public class ReportComparisonService {
     }
 
     /**
-     * Helper method to convert your Fraction object into a usable percentage double.
-     * Implement this based on the exact properties of gov.nist.healthcare.iz.darq.digest.domain.Fraction
+     * Converts a Fraction into its percentage value, or null when the row has no
+     * observation so that aggregates skip it instead of counting a 0%.
      */
     private Double extractPercent(Fraction fraction) {
-        if (fraction == null) return 0.0;
-        // Example: return (double) fraction.getCount() / fraction.getTotal() * 100;
-        return 0.0; // TODO: Map to actual Fraction logic
+        if (fraction == null) return null;
+        return fraction.percent();
     }
 }

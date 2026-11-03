@@ -1,0 +1,188 @@
+{
+  "baseReportId" : "mock-report-2023",
+  "newReportId" : "mock-report-2024",
+  "templateId" : "mock-template-1",
+  "sectionDifferentials" : [ {
+    "sectionId" : "section-1",
+    "sectionPath" : "1",
+    "sectionHeader" : "Data Quality Measures",
+    "missingInNewReport" : false,
+    "thresholdViolationChanged" : false,
+    "tableDifferentials" : [ {
+      "tableIndex" : 0,
+      "tableCaption" : "Measure 1.1 - Patient Completeness",
+      "missingInNewReport" : false,
+      "thresholdViolationChanged" : false,
+      "rowDifferentials" : [ {
+        "rowIdentifier" : {
+          "PROVIDER" : "IIS-A"
+        },
+        "missingInNewReport" : false,
+        "passStatusChanged" : false,
+        "baseResult" : {
+          "count" : 10000,
+          "total" : 10000
+        },
+        "newResult" : {
+          "count" : 10000,
+          "total" : 10000
+        },
+        "thresholdText" : ">99%",
+        "basePass" : true,
+        "newPass" : true,
+        "basePercent" : 100.0,
+        "newPercent" : 100.0,
+        "minPercent" : 100.0,
+        "meanPercent" : 100.0,
+        "maxPercent" : 100.0,
+        "percentOfReportsPassing" : 100.0
+      } ]
+    }, {
+      "tableIndex" : 1,
+      "tableCaption" : "Measure 1.2 - Address Completeness",
+      "missingInNewReport" : false,
+      "thresholdViolationChanged" : true,
+      "rowDifferentials" : [ {
+        "rowIdentifier" : {
+          "PROVIDER" : "IIS-A"
+        },
+        "missingInNewReport" : false,
+        "passStatusChanged" : true,
+        "baseResult" : {
+          "count" : 9900,
+          "total" : 10000
+        },
+        "newResult" : {
+          "count" : 9910,
+          "total" : 10000
+        },
+        "thresholdText" : ">99%",
+        "basePass" : false,
+        "newPass" : true,
+        "basePercent" : 99.0,
+        "newPercent" : 99.0999984741211,
+        "minPercent" : 99.0,
+        "meanPercent" : 99.04999923706055,
+        "maxPercent" : 99.0999984741211,
+        "percentOfReportsPassing" : 50.0
+      } ]
+    }, {
+      "tableIndex" : 2,
+      "tableCaption" : "Measure 2.1 - Vaccination Coding",
+      "missingInNewReport" : false,
+      "thresholdViolationChanged" : true,
+      "rowDifferentials" : [ {
+        "rowIdentifier" : {
+          "PROVIDER" : "IIS-A"
+        },
+        "missingInNewReport" : false,
+        "passStatusChanged" : true,
+        "baseResult" : {
+          "count" : 9560,
+          "total" : 10000
+        },
+        "newResult" : {
+          "count" : 8400,
+          "total" : 10000
+        },
+        "thresholdText" : ">85%",
+        "basePass" : true,
+        "newPass" : false,
+        "basePercent" : 95.5999984741211,
+        "newPercent" : 84.0,
+        "minPercent" : 84.0,
+        "meanPercent" : 89.79999923706055,
+        "maxPercent" : 95.5999984741211,
+        "percentOfReportsPassing" : 50.0
+      } ]
+    }, {
+      "tableIndex" : 3,
+      "tableCaption" : "Measure 2.2 - Lot Number Presence",
+      "missingInNewReport" : false,
+      "thresholdViolationChanged" : false,
+      "rowDifferentials" : [ {
+        "rowIdentifier" : {
+          "PROVIDER" : "IIS-A"
+        },
+        "missingInNewReport" : false,
+        "passStatusChanged" : false,
+        "baseResult" : {
+          "count" : 1234,
+          "total" : 10000
+        },
+        "newResult" : {
+          "count" : 4567,
+          "total" : 10000
+        },
+        "thresholdText" : ">90%",
+        "basePass" : false,
+        "newPass" : false,
+        "basePercent" : 12.34000015258789,
+        "newPercent" : 45.66999816894531,
+        "minPercent" : 12.34000015258789,
+        "meanPercent" : 29.0049991607666,
+        "maxPercent" : 45.66999816894531,
+        "percentOfReportsPassing" : 0.0
+      } ]
+    }, {
+      "tableIndex" : 4,
+      "tableCaption" : "Measure 3.1 - Duplicate Patient Rate",
+      "missingInNewReport" : false,
+      "thresholdViolationChanged" : false,
+      "rowDifferentials" : [ {
+        "rowIdentifier" : {
+          "PROVIDER" : "IIS-A"
+        },
+        "missingInNewReport" : false,
+        "passStatusChanged" : false,
+        "baseResult" : {
+          "count" : 210,
+          "total" : 10000
+        },
+        "newResult" : {
+          "count" : 175,
+          "total" : 10000
+        },
+        "thresholdText" : "<5%",
+        "basePass" : true,
+        "newPass" : true,
+        "basePercent" : 2.0999999046325684,
+        "newPercent" : 1.75,
+        "minPercent" : 1.75,
+        "meanPercent" : 1.9249999523162842,
+        "maxPercent" : 2.0999999046325684,
+        "percentOfReportsPassing" : 100.0
+      } ]
+    }, {
+      "tableIndex" : 5,
+      "tableCaption" : "Measure 3.2 - Empty Denominator",
+      "missingInNewReport" : false,
+      "thresholdViolationChanged" : false,
+      "rowDifferentials" : [ {
+        "rowIdentifier" : {
+          "PROVIDER" : "IIS-A"
+        },
+        "missingInNewReport" : false,
+        "passStatusChanged" : false,
+        "baseResult" : {
+          "count" : 0,
+          "total" : 0
+        },
+        "newResult" : {
+          "count" : 0,
+          "total" : 0
+        },
+        "thresholdText" : ">50%",
+        "basePass" : false,
+        "newPass" : false,
+        "basePercent" : 0.0,
+        "newPercent" : 0.0,
+        "minPercent" : 0.0,
+        "meanPercent" : 0.0,
+        "maxPercent" : 0.0,
+        "percentOfReportsPassing" : 0.0
+      } ]
+    } ],
+    "children" : [ ]
+  } ]
+}
