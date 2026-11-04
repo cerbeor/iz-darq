@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {Field, fieldDisplayName} from '../../report-template/model/analysis.values';
 import {Labelizer} from '../../shared/services/values.service';
 import {
+  ChangeDirection,
   IComparisonRow,
   IComparisonSummary,
   IRowDifferential,
@@ -95,6 +96,23 @@ export class ReportComparisonService {
       return 0;
     }
     return row.newPercent - row.basePercent;
+  }
+
+  /**
+   * Tells whether a point change moves the measure toward or away from its threshold:
+   * a `>` threshold is approached by going up, a `<` threshold by going down.
+   */
+  pointChangeDirection(thresholdText: string, pointChange: number): ChangeDirection {
+    if (!pointChange || !thresholdText) {
+      return ChangeDirection.NEUTRAL;
+    }
+    if (thresholdText.startsWith('>')) {
+      return pointChange > 0 ? ChangeDirection.IMPROVING : ChangeDirection.DECLINING;
+    }
+    if (thresholdText.startsWith('<')) {
+      return pointChange < 0 ? ChangeDirection.IMPROVING : ChangeDirection.DECLINING;
+    }
+    return ChangeDirection.NEUTRAL;
   }
 
   toComparisonRow(table: ITableDifferential, row: IRowDifferential, labelizer: Labelizer): IComparisonRow {

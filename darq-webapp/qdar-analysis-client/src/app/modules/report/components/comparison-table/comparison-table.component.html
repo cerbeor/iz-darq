@@ -130,7 +130,11 @@
         <td [ngClass]="row.basePass ? 'status-met' : 'status-not-met'">{{ row.baseOutcome }}</td>
         <td class="numeric">{{ row.newPercent | number:'1.2-2' }}%</td>
         <td [ngClass]="row.newPass ? 'status-met' : 'status-not-met'">{{ row.newOutcome }}</td>
-        <td class="numeric">
+        <td class="numeric"
+            [ngClass]="{
+              'change-improving': row.pointChangeDirection === directions.IMPROVING,
+              'change-declining': row.pointChangeDirection === directions.DECLINING
+            }">
           {{ row.pointChange > 0 ? '+' : '' }}{{ row.pointChange | number:'1.2-2' }}%
         </td>
         <td [ngSwitch]="row.outcome">

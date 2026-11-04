@@ -48,6 +48,15 @@ export enum MeasureOutcome {
 }
 
 /**
+ * Whether a measure moved toward (IMPROVING) or away from (DECLINING) its threshold.
+ */
+export enum ChangeDirection {
+  IMPROVING = 'Improving',
+  DECLINING = 'Declining',
+  NEUTRAL = 'Neutral',
+}
+
+/**
  * Flattened view of a row differential, ready for tabular display.
  */
 export interface IComparisonRow {

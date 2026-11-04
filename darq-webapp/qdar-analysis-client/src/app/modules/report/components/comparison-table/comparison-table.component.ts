@@ -4,7 +4,7 @@ import {Comparator} from '../../../report-template/model/report-template.model';
 import {Labelizer} from '../../../shared/services/values.service';
 import {SelectItem} from 'primeng/api/selectitem';
 import {Table} from 'primeng/table/table';
-import {IComparisonRow, ITableDifferential, MeasureOutcome} from '../../model/comparison.model';
+import {ChangeDirection, IComparisonRow, ITableDifferential, MeasureOutcome} from '../../model/comparison.model';
 import {ReportComparisonService} from '../../services/report-comparison.service';
 
 /**
@@ -15,6 +15,7 @@ export interface IComparisonTableRow extends IComparisonRow {
   [field: string]: any;
   baseOutcome: string;
   newOutcome: string;
+  pointChangeDirection: ChangeDirection;
 }
 
 @Component({
@@ -25,6 +26,7 @@ export interface IComparisonTableRow extends IComparisonRow {
 export class ComparisonTableComponent implements OnInit {
 
   outcomes = MeasureOutcome;
+  directions = ChangeDirection;
   rows: IComparisonTableRow[] = [];
   // One column per row identifier field (Reporting Group, Detection Type, ...)
   identifierFields: Field[] = [];
@@ -128,6 +130,7 @@ export class ComparisonTableComponent implements OnInit {
       ...row.identifier,
       baseOutcome: row.basePass ? 'Met' : 'Not Met',
       newOutcome: row.missingInNewReport ? '' : (row.newPass ? 'Met' : 'Not Met'),
+      pointChangeDirection: this.comparisonService.pointChangeDirection(row.thresholdText, row.pointChange),
     };
   }
 

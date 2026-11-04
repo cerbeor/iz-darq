@@ -9,6 +9,25 @@
   th.numeric {
     text-align: right;
   }
+
+  // Nested under the table so these win over PrimeNG's own
+  // `.p-datatable .p-datatable-tbody > tr > td` color rule.
+  tbody > tr > td {
+    &.change-improving,
+    &.status-met {
+      color: #17722c;
+    }
+
+    &.change-declining,
+    &.status-not-met {
+      color: #b02a37;
+    }
+
+    &.change-improving,
+    &.change-declining {
+      font-weight: 600;
+    }
+  }
 }
 
 .filter-icon {
@@ -37,14 +56,6 @@
 
 .outcome-no-change {
   color: #6c757d;
-}
-
-.status-met {
-  color: #17722c;
-}
-
-.status-not-met {
-  color: #b02a37;
 }
 
 .row-changed {
