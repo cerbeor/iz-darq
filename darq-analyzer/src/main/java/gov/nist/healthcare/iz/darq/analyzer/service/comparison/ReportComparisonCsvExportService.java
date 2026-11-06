@@ -65,7 +65,22 @@ public class ReportComparisonCsvExportService {
 
         // 2. Iterate through Differentials
         for (SectionDifferential section : comparisonResult.getSectionDifferentials()) {
-            if (section.getTableDifferentials() == null) continue;
+            appendSection(csv, section);
+        }
+
+        return csv.toString();
+    }
+
+    /**
+     * Appends every row of a section and, recursively, of its child sections.
+     * Report sections are a tree: top-level sections are frequently only
+     * containers whose data tables live in descendant sections, so skipping
+     * the recursion would emit a header-only CSV.
+     */
+    private void appendSection(StringBuilder csv, SectionDifferential section) {
+        if (section == null) return;
+
+        if (section.getTableDifferentials() != null) {
 
             for (TableDifferential table : section.getTableDifferentials()) {
                 if (table.getRowDifferentials() == null) continue;
@@ -110,7 +125,11 @@ public class ReportComparisonCsvExportService {
             }
         }
 
-        return csv.toString();
+        if (section.getChildren() != null) {
+            for (SectionDifferential child : section.getChildren()) {
+                appendSection(csv, child);
+            }
+        }
     }
 
     private String escape(String value) {

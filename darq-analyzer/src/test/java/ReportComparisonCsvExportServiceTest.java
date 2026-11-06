@@ -114,6 +114,42 @@ public class ReportComparisonCsvExportServiceTest {
         assertTrue("Null percents should output N/A", lines[1].contains("N/A,Not Met,N/A,Not Met,0.00%"));
     }
 
+    @Test
+    public void exportToCsv_WithNestedChildSections_IncludesChildRows() {
+        // Real reports nest their data tables inside child sections; the top-level
+        // section is only a container with no tables of its own.
+        ReportComparisonResult result = new ReportComparisonResult();
+
+        SectionDifferential parent = new SectionDifferential();
+        parent.setSectionHeader("Parent Container");
+        // NOTE: parent intentionally has no table differentials
+
+        SectionDifferential child = new SectionDifferential();
+        child.setSectionHeader("Child Section");
+        TableDifferential table = new TableDifferential();
+        table.setTableCaption("Nested Measure");
+        table.setRowDifferentials(Collections.singletonList(createTestRow(false, 90.0, true, 95.0, ">95%")));
+        child.getTableDifferentials().add(table);
+
+        SectionDifferential grandChild = new SectionDifferential();
+        grandChild.setSectionHeader("Grand Child Section");
+        TableDifferential deepTable = new TableDifferential();
+        deepTable.setTableCaption("Deep Measure");
+        deepTable.setRowDifferentials(Collections.singletonList(createTestRow(true, 99.0, false, 80.0, ">85%")));
+        grandChild.getTableDifferentials().add(deepTable);
+        child.getChildren().add(grandChild);
+
+        parent.getChildren().add(child);
+        result.setSectionDifferentials(Collections.singletonList(parent));
+
+        String csv = exportService.exportToCsv(result, "2023", "2024");
+        String[] lines = csv.split(ReportComparisonCsvExportService.NEW_LINE);
+
+        assertEquals("Should have 1 header and 2 data rows from nested sections", 3, lines.length);
+        assertTrue("Child section row should be exported", csv.contains("Nested Measure"));
+        assertTrue("Grand child section row should be exported", csv.contains("Deep Measure"));
+    }
+
     // --- Helper Method to instantiate RowDifferentials ---
 
     private RowDifferential createTestRow(boolean basePass, Double basePercent, boolean newPass, Double newPercent, String thresholdText) {
