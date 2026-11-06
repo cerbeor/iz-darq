@@ -108,7 +108,7 @@ public class ReportComparisonCsvExportService {
             for (TableDifferential table : section.getTableDifferentials()) {
                 if (table == null || table.getRowDifferentials() == null) continue;
 
-                String caption = table.getTableCaption() != null ? table.getTableCaption() : "";
+                String caption = tableLabel(table);
 
                 for (RowDifferential row : table.getRowDifferentials()) {
                     appendRow(csv, sectionLabel, caption, row, identifierFields, newReportNickname);
@@ -201,6 +201,23 @@ public class ReportComparisonCsvExportService {
         String header = section.getSectionHeader() != null ? section.getSectionHeader() : "";
         String path = section.getSectionPath();
         return (path != null && !path.isEmpty()) ? path + ". " + header : header;
+    }
+
+    /**
+     * Label for the Table column. The caption is an optional, user authored field
+     * on the query ({@code QueryPayload.caption}, defaulted to an empty string by
+     * the template editor), so most real templates leave it blank. On screen a
+     * blank caption is harmless because each table is its own visual grid under
+     * its section heading, but the CSV flattens every table into one sheet, so a
+     * blank here would leave rows with no way to tell which table they came from.
+     * Fall back to the table's position within its section, which is always set.
+     */
+    String tableLabel(TableDifferential table) {
+        String caption = table.getTableCaption();
+        if (caption != null && !caption.trim().isEmpty()) {
+            return caption;
+        }
+        return "Table " + (table.getTableIndex() + 1);
     }
 
     /**

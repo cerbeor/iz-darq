@@ -266,6 +266,67 @@ public class ReportComparisonCsvExportServiceTest {
                 lines[1].contains("-,-,Not Met,-,Not Met,0.00%"));
     }
 
+    @Test
+    public void exportToCsv_WithBlankCaption_FallsBackToTableIndex() {
+        // QueryPayload.caption is optional and the template editor defaults it to '',
+        // so most real templates produce table differentials with no caption at all.
+        // The Table column must still identify the table.
+        ReportComparisonResult result = new ReportComparisonResult();
+        SectionDifferential section = new SectionDifferential();
+        section.setSectionPath("2");
+        section.setSectionHeader("Vaccination Detections");
+
+        TableDifferential nullCaption = new TableDifferential();
+        nullCaption.setTableCaption(null);
+        nullCaption.setTableIndex(0);
+        nullCaption.setRowDifferentials(Collections.singletonList(createTestRow(true, 90.0, true, 91.0, ">85%")));
+
+        TableDifferential emptyCaption = new TableDifferential();
+        emptyCaption.setTableCaption("");
+        emptyCaption.setTableIndex(1);
+        emptyCaption.setRowDifferentials(Collections.singletonList(createTestRow(true, 70.0, true, 72.0, ">60%")));
+
+        TableDifferential blankCaption = new TableDifferential();
+        blankCaption.setTableCaption("   ");
+        blankCaption.setTableIndex(2);
+        blankCaption.setRowDifferentials(Collections.singletonList(createTestRow(true, 80.0, true, 82.0, ">75%")));
+
+        section.getTableDifferentials().add(nullCaption);
+        section.getTableDifferentials().add(emptyCaption);
+        section.getTableDifferentials().add(blankCaption);
+        result.setSectionDifferentials(Collections.singletonList(section));
+
+        String[] lines = exportService.exportToCsv(result, "2023", "2024")
+                .split(ReportComparisonCsvExportService.NEW_LINE);
+
+        assertTrue("Null caption should fall back to a 1-based table label",
+                lines[1].startsWith("2. Vaccination Detections,Table 1,"));
+        assertTrue("Empty caption should fall back too",
+                lines[2].startsWith("2. Vaccination Detections,Table 2,"));
+        assertTrue("Whitespace-only caption should fall back too",
+                lines[3].startsWith("2. Vaccination Detections,Table 3,"));
+    }
+
+    @Test
+    public void exportToCsv_WithCaption_PrefersTheCaptionOverTheIndex() {
+        ReportComparisonResult result = new ReportComparisonResult();
+        SectionDifferential section = new SectionDifferential();
+        section.setSectionHeader("Section");
+
+        TableDifferential table = new TableDifferential();
+        table.setTableCaption("Doses by Provider");
+        table.setTableIndex(4);
+        table.setRowDifferentials(Collections.singletonList(createTestRow(true, 90.0, true, 91.0, ">85%")));
+
+        section.getTableDifferentials().add(table);
+        result.setSectionDifferentials(Collections.singletonList(section));
+
+        String[] lines = exportService.exportToCsv(result, "2023", "2024")
+                .split(ReportComparisonCsvExportService.NEW_LINE);
+
+        assertTrue("An authored caption should win", lines[1].contains(",Doses by Provider,"));
+    }
+
     // --- Helpers ---
 
     private int countSeparators(String line) {
