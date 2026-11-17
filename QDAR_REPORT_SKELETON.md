@@ -24,7 +24,7 @@
 [ Records / IIS export ] ──► [ CLI: extract process ] ──► [ Local Reports (Bad Zip Codes, Mismerged records, Lot Numbers,...)]
                                          │
                                          ▼
-                           [ ADF (encrypted data file) ]
+                           [ ADF file (encrypted data file) ]
                                          │
                                          ▼
                      [ WebApp: upload / merge / analyze / report ]
@@ -38,7 +38,16 @@
 - **Clients:** `darq-aart-client`, `darq-cli-app`
 - **Utilities:** `file-parser`, `fake-record-generator`, `crypto-helper`
 
-CLI is a Jar downloaded form the WebApp 
+**Deployment model** webapp is deployed as a Java web app with `qdar.war` , CLI is a Jar file downloadable from the WebApp.
+
+**Core logic dependencies**:
+- **_MQE Validator_** for detection of anomalies on the Vaccination histories
+-  **_LonestarForecaster_** & **_StepIntoCDSi_** Vaccination forecasters MQE validates against
+- **_Mismo_**  for duplicate records evaluations
+
+**Authentication**: webapp is password secured using JWTs and JKS.
+
+**Database** Webapp uses MongoDB for the database and JKS for encryption.
 _[fill: deployment model, auth, storage (ADF store), external deps]_
 
 ---
@@ -96,7 +105,6 @@ _[fill: deployment model, auth, storage (ADF store), external deps]_
 
 ## 4. What Has Been Implemented So Far
 
-_Group by area; replace bullets with concrete items._
 **CLI / extraction**
 - Detection and corrections for MVX including lowercase char
 - Local Reports generation
@@ -113,6 +121,7 @@ _Group by area; replace bullets with concrete items._
 
 **WebApp / backend**
 - Analysis Report Comparison Endpoints and csv export
+- ReportTemplate cloning endpoint now allows configuration override
 - _[fill: report comparison endpoints, published-report comparison, CSV output, …]_
 
 **WebApp / frontend**
