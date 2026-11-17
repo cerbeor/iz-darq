@@ -4,7 +4,7 @@
 **Project:** QDAR (`gov.nist.healthcare.iz:darq`)
 **Branch:** `restyling` · **API v:** 3.1.4.5 · **WebApp v:** 4.1.8.2
 **Date:** 2026-11-17
-**Author:** _[fill]_
+**Author:** Clement Hennequin clement.hennequin@nist.gov
 
 ---
 
@@ -14,7 +14,8 @@
 
 **Audience / users.** IIS Administrators, AIRA IIS Data testers 
 
-**Key value proposition.** _[fill: one or two sentences]_
+**Key value proposition.** QDAR turns raw Immunization Information System (IIS) exports into validated, deduplicated, analysis-ready data files and produces reviewable, publishable, and comparable quality reports — giving IIS administrators and public-health analysts a single, auditable view of data quality. 
+Analysis runs locally on an IIS's own private data so sensitive records never leave the organization's environment.
 
 ---
 
@@ -38,17 +39,18 @@
 - **Clients:** `darq-aart-client`, `darq-cli-app`
 - **Utilities:** `file-parser`, `fake-record-generator`, `crypto-helper`
 
-**Deployment model** webapp is deployed as a Java web app with `qdar.war` , CLI is a Jar file downloadable from the WebApp.
+**Deployment model**: webapp is deployed as a Java web app with `qdar.war` , CLI is a Jar file downloadable from the WebApp.
 
 **Core logic dependencies**:
 - **_MQE Validator_** for detection of anomalies on the Vaccination histories
--  **_LonestarForecaster_** & **_StepIntoCDSi_** Vaccination forecasters MQE validates against
+- **_LonestarForecaster_** & **_StepIntoCDSi_** Vaccination forecasters MQE validates against
 - **_Mismo_**  for duplicate records evaluations
 
 **Authentication**: webapp is password secured using JWTs and JKS.
 
-**Database** Webapp uses MongoDB for the database and JKS for encryption.
-_[fill: deployment model, auth, storage (ADF store), external deps]_
+**Encryption** ADF files are encrypted by CLI in order to be only readable by a webapp having the same set of keys
+
+**Database**: Webapp uses MongoDB for the database and JKS for encryption.
 
 ---
 
