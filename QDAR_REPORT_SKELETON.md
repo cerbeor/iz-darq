@@ -106,32 +106,32 @@ _[fill: deployment model, auth, storage (ADF store), external deps]_
 ## 4. What Has Been Implemented So Far
 
 **CLI / extraction**
-- Detection and corrections for MVX including lowercase char
+- Detection and corrections of MVX including lowercase char
 - Local Reports generation
-  - Mismerged Records
-  - Bad Zip Codes
-  - Bad Phone Number
-  - Lowercase MVX
-  - Vaccine Code statistics
-  - Reporting Groups statistics
-- Several upgrades of MQE
-  - More detections were added
+  - _Mismerged Records_ Records suspected of being mismerged through certain detections
+  - _Bad Zip Codes_ 
+  - _Bad Phone Number_
+  - _Lowercase MVX_ Mvx codes that had ot be corrected by the CLI
+  - _Vaccine Code_ statistics on Vaccine codes present in Records
+  - _Reporting Groups_ statistics on the Reporting Groups defined in Records
+- Upgrades of MQE
+  - Detections upgraded and expanded
   - Detections can now be characterized as _Deprecated_ _Experimental_ with _MQE Detection lifecycle support_
 - Codeset were upgraded to the latest versions published by AIRA.
 
 **WebApp / backend**
-- Analysis Report Comparison Endpoints and csv export
+- Analysis Report Comparison Endpoints and CSV export
 - ReportTemplate cloning endpoint now allows configuration override
-- _[fill: report comparison endpoints, published-report comparison, CSV output, …]_
+- Version bumps & build fixes — API/WebApp/CLI version updates and POM fixes.
 
 **WebApp / frontend**
--  Users now allowed to select a compatible configuration when cloning a Report Template
+- Users now allowed to select a compatible configuration when cloning a Report Template
 - New disclaimers and headers were added for the transition to prometheus
 - ADF summary display ergonomics improved with Bold fonts for statistics above 0%
 - Form bug fixed for ADF names
 - Filtering of detections possible on _MQE Detection lifecycle support_
 - ADF summary comparison and csv export
-- Analysis & published report comparison display
+- Analysis & published report comparison form & display
 
 **Quality / testing**
 
@@ -150,7 +150,7 @@ _[fill: deployment model, auth, storage (ADF store), external deps]_
 - Technological Upgrade of project and dependencies from java 8 to the latest stable versions
 - Upgrade of the CI, which is currently very consistent at the price of time efficiency
 - Creation of more complete UI tests with framework similar to _Playwright_
-- Expanding functionality and test on import/export of configurations
+- Expanding functionalities of import/export on all models to prepare global export
 
 ---
 
@@ -174,11 +174,3 @@ sh ./load-codebase.sh
 **Prerequisites:** JDK 8, Node v14.20.0, Maven 3.6+, Docker.
 
 ---
-
-## 7. Notes / Decisions
-
-- _[fill: architectural decisions, constraints, NIST/AIRA disclaimer vocabulary, etc.]_
-
----
-
-_Appendix: module list, version history, contact._
