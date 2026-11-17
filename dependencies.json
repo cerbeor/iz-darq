@@ -13,6 +13,24 @@
       "cmd": "mvn jar:jar package install:install -DskipTests -Dmaven.javadoc.skip=true -Dgpg.skip -Dexec.skip=true"
     },
     {
+      "name": "InteropHub Client",
+      "repository": "https://github.com/immregistries/InteropHub-Client",
+      "sha1": "4fe5ad8624e61b4ed2a818d06df7cb6494a0ab35",
+      "cmd": "mvn clean install -DskipTests -Dmaven.javadoc.skip=true -Dgpg.skip"
+    },
+    {
+      "name": "Cds base",
+      "repository": "https://github.com/usnistgov/cds-base",
+      "sha1": "94419de1460a02c66dd77f1fea1906e389c519e0",
+      "cmd": "mvn clean install -DskipTests -Dmaven.javadoc.skip=true -Dgpg.skip"
+    },
+    {
+      "name": "StepIntoCdsi",
+      "repository": "https://github.com/immregistries/StepIntoCDSI",
+      "sha1": "4423fa61497e92cd7638cc155ffd509b6514eeba",
+      "cmd": "mvn install:install-file -Dfile=./repo/org/immregistries/interophub-client/1.0.0/interophub-client-1.0.0.jar -DgroupId=org.immregistries -DartifactId=interophub-client -Dversion=1.0.0 -Dpackaging=jar; mvn clean install -DskipTests -Dmaven.javadoc.skip=true -Dgpg.skip"
+    },
+    {
       "name": "MISMO",
       "repository": "https://github.com/immregistries/mismo-match",
       "sha1": "1cc8dc85cd0510fa2b3782897e02a38a28d0b538",
