@@ -21,13 +21,16 @@
 ## 2. High-Level Architecture
 
 ```
-[ Records / IIS export ] ──► [ CLI: extract process ] ──► [ ADF (encrypted data file) ]
-                                                              │
-                                                              ▼
-                                              [ WebApp: upload / merge / analyze / report ]
-                                                              │
-                                                              ▼
-                                              [ Reports (published / compared) ]
+[ Records / IIS export ] ──► [ CLI: extract process ] ──► [ Local Reports (Bad Zip Codes, Mismerged records, Lot Numbers,...)]
+                                         │
+                                         ▼
+                           [ ADF (encrypted data file) ]
+                                         │
+                                         ▼
+                     [ WebApp: upload / merge / analyze / report ]
+                                         │
+                                         ▼
+                        [ Reports (published / compared) ]
 ```
 
 - **Core modules:** `darq-extract-process`, `darq-analyzer`, `darq-patient-matching`, `darq-common`
@@ -35,6 +38,7 @@
 - **Clients:** `darq-aart-client`, `darq-cli-app`
 - **Utilities:** `file-parser`, `fake-record-generator`, `crypto-helper`
 
+CLI is a Jar downloaded form the WebApp 
 _[fill: deployment model, auth, storage (ADF store), external deps]_
 
 ---
@@ -50,7 +54,7 @@ _[fill: deployment model, auth, storage (ADF store), external deps]_
 - Validate records with MQE / code sets (AIRA `Compiled.xml`)
 - Patient matching / deduplication (`darq-patient-matching`)
 - Encrypt & package output ADF (`crypto-helper`, `darq-adf-utils`)
-- Digest/summary generation (`darq-digest-service`)
+- Digest/summary and Local reports generation (`darq-digest-service`)
 
 **Status.** Implemented and tested
 
@@ -93,18 +97,38 @@ _[fill: deployment model, auth, storage (ADF store), external deps]_
 ## 4. What Has Been Implemented So Far
 
 _Group by area; replace bullets with concrete items._
-
 **CLI / extraction**
-- _[fill]_
+- Detection and corrections for MVX including lowercase char
+- Local Reports generation
+  - Mismerged Records
+  - Bad Zip Codes
+  - Bad Phone Number
+  - Lowercase MVX
+  - Vaccine Code statistics
+  - Reporting Groups statistics
+- Several upgrades of MQE
+  - More detections were added
+  - Detections can now be characterized as _Deprecated_ _Experimental_ with _MQE Detection lifecycle support_
+- Codeset were upgraded to the latest versions published by AIRA.
 
 **WebApp / backend**
+- Analysis Report Comparison Endpoints and csv export
 - _[fill: report comparison endpoints, published-report comparison, CSV output, …]_
 
 **WebApp / frontend**
-- _[fill: comparison table filtering/ordering, ADF stats comparison dialog, report template sidebar, …]_
+-  Users now allowed to select a compatible configuration when cloning a Report Template
+- New disclaimers and headers were added for the transition to prometheus
+- ADF summary display ergonomics improved with Bold fonts for statistics above 0%
+- Form bug fixed for ADF names
+- Filtering of detections possible on _MQE Detection lifecycle support_
+- ADF summary comparison and csv export
+- Analysis & published report comparison display
 
 **Quality / testing**
-- _[fill: ReportComparisonEndpointTest, basic tests]_
+
+- Basic Unit testing of API services functionalities
+- Report Comparison full endpoint test
+- Basic UI angular tests
 
 **Build / release**
 - Docker build (`docker-build.sh`), manual Maven + Angular builds, versioning via `qdar-versions.sh`, external dependency management via `dependencies.json`/`dependencies.sh`, code-set loading via `load-codebase.sh`.
@@ -113,13 +137,11 @@ _Group by area; replace bullets with concrete items._
 
 ## 5. Remaining Work / Roadmap
 
-- _[fill: pending features]_
-- _[fill: known issues / bugs]_
-- _[fill: testing gaps]_
-- _[fill: documentation]_
 - Upgrade of the MQE Validator to validate the data against the StepIntoCDSi project's rules
 - Technological Upgrade of project and dependencies from java 8 to the latest stable versions
-
+- Upgrade of the CI, which is currently very consistent at the price of time efficiency
+- Creation of more complete UI tests with framework similar to _Playwright_
+- Expanding functionality and test on import/export of configurations
 
 ---
 
