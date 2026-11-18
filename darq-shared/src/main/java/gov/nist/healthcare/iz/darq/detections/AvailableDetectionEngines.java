@@ -13,6 +13,7 @@ import java.util.stream.Collectors;
 
 public class AvailableDetectionEngines {
 	public static final String DP_ID_MQE = "MQE";
+	public static final String DP_ID_MQE_LONESTAR = "MQE_LONESTAR";
 	public static final String DP_ID_VD = "VACCINATION_DUPLICATE";
 	public static final String DP_ID_PM = "PATIENT_MATCHER";
 	public static final String DP_ID_COMPLEX_DETECTIONS = "COMPLEX_DETECTIONS";

@@ -118,7 +118,11 @@ public class DetectionTestRunner {
 		detectionEngineConfiguration.setOutputDirectory(outputDirectory.toAbsolutePath().toString());
 		detectionEngineConfiguration.setTemporaryDirectory(temporaryDirectory.toAbsolutePath().toString());
 		detectionEngineConfiguration.setConfigurationPayload(configuration);
-		detectionEngineConfiguration.addActiveProvider(AvailableDetectionEngines.DP_ID_MQE);
+		if(lonestarLegacyValidation) {
+			detectionEngineConfiguration.addActiveProvider(AvailableDetectionEngines.DP_ID_MQE_LONESTAR);
+		} else {
+			detectionEngineConfiguration.addActiveProvider(AvailableDetectionEngines.DP_ID_MQE);
+		}
 		if(configuration.isActivatePatientMatching()) {
 			detectionEngineConfiguration.addActiveProvider(AvailableDetectionEngines.DP_ID_PM);
 		}

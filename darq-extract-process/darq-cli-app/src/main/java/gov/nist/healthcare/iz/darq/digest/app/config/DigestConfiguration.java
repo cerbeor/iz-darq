@@ -46,11 +46,13 @@ public class DigestConfiguration {
 	@Bean
 	public DetectionEngine detectionEngine() {
 		MQEDetectionProvider mqeDetectionProvider = new MQEDetectionProvider();
+		MQEDetectionProvider mqeLonestarDetectionProvider = new MQEDetectionProvider();
 		MismoMatcherDetectionProvider mismoMatcherDetectionProvider = new MismoMatcherDetectionProvider(patientMatchingService());
 		ComplexDetectionProvider complexDetectionProvider = new ComplexDetectionProvider();
 		VaccinationDuplicateDetectionProvider vaccinationDuplicateDetectionProvider = new VaccinationDuplicateDetectionProvider();
 		Map<String, DetectionProvider> providers = new HashMap<>();
 		providers.put(AvailableDetectionEngines.DP_ID_MQE, mqeDetectionProvider);
+		providers.put(AvailableDetectionEngines.DP_ID_MQE_LONESTAR, mqeLonestarDetectionProvider);
 		providers.put(AvailableDetectionEngines.DP_ID_PM, mismoMatcherDetectionProvider);
 		providers.put(AvailableDetectionEngines.DP_ID_VD, vaccinationDuplicateDetectionProvider);
 		providers.put(AvailableDetectionEngines.DP_ID_COMPLEX_DETECTIONS, complexDetectionProvider);
