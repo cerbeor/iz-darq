@@ -14,6 +14,7 @@ public class ConfigurationPayload {
 	private String asOf;
 	private boolean activatePatientMatching;
 	private String mismoPatientMatchingConfiguration;
+	private boolean useLonestarForecaster;
 	private Map<String, String> vaxCodeAbstraction;
 	private final Date now = new Date();
 	private List<ComplexDetection> complexDetections = new ArrayList<>();
@@ -122,4 +123,12 @@ public class ConfigurationPayload {
 	public int hashCode() {
 		return Objects.hash(ageGroups, detections, asOf, activatePatientMatching, mismoPatientMatchingConfiguration, vaxCodeAbstraction, complexDetections);
 	}
+
+    public boolean getUseLonestarForecaster() {
+        return useLonestarForecaster;
+    }
+
+    public void setUseLonestarForecaster(boolean useLonestarForecaster) {
+        this.useLonestarForecaster = useLonestarForecaster;
+    }
 }

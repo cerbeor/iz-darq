@@ -296,13 +296,13 @@ public class CLIApp {
 		}
 	}
 
-	private static @NonNull DetectionEngine configureDetectionEngine(ApplicationContext context, ConfigurationPayload configurationPayload, boolean deActivatePatientMatching, boolean activePatientMatching, boolean lonestarLegacyValidation, File output) throws Exception {
+	private static @NonNull DetectionEngine configureDetectionEngine(ApplicationContext context, ConfigurationPayload configurationPayload, boolean deActivatePatientMatching, boolean activePatientMatching, boolean uselonestarLegacyValidation, File output) throws Exception {
 		DetectionEngine detectionEngine = context.getBean(DetectionEngine.class);
 		DetectionEngineConfiguration detectionEngineConfiguration = new DetectionEngineConfiguration();
 		detectionEngineConfiguration.setOutputDirectory(output.getAbsolutePath());
 		detectionEngineConfiguration.setTemporaryDirectory(temporaryDirectory.toAbsolutePath().toString());
 		detectionEngineConfiguration.setConfigurationPayload(configurationPayload);
-		if(lonestarLegacyValidation) {
+		if(configurationPayload.getUseLonestarForecaster() || uselonestarLegacyValidation) {
 			detectionEngineConfiguration.addActiveProvider(AvailableDetectionEngines.DP_ID_MQE_LONESTAR);
 		} else {
 			detectionEngineConfiguration.addActiveProvider(AvailableDetectionEngines.DP_ID_MQE);
@@ -404,6 +404,9 @@ public class CLIApp {
 		}
 		if(deActivatePatientMatching) {
 			configurationPayload.setActivatePatientMatching(false);
+		}
+		if (lonestarLegacyValidation) {
+			configurationPayload.setUseLonestarForecaster(true);
 		}
 
 		List<String> selectedDetections = Arrays.stream(requestedDetections)

@@ -118,7 +118,7 @@ public class DetectionTestRunner {
 		detectionEngineConfiguration.setOutputDirectory(outputDirectory.toAbsolutePath().toString());
 		detectionEngineConfiguration.setTemporaryDirectory(temporaryDirectory.toAbsolutePath().toString());
 		detectionEngineConfiguration.setConfigurationPayload(configuration);
-		if(lonestarLegacyValidation) {
+		if(configuration.getUseLonestarForecaster() || lonestarLegacyValidation) {
 			detectionEngineConfiguration.addActiveProvider(AvailableDetectionEngines.DP_ID_MQE_LONESTAR);
 		} else {
 			detectionEngineConfiguration.addActiveProvider(AvailableDetectionEngines.DP_ID_MQE);
