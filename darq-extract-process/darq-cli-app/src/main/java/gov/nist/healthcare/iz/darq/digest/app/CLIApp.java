@@ -64,6 +64,7 @@ public class CLIApp {
 	public static final String D_OPT = "d";
 	public static final String PUB_OPT = "pub";
 	public static final String PM_OPT = "pm";
+	public static final String LONESTAR_OPT = "lsvf";
 	public static final String NPM_OPT = "npm";
 	public static final String DETECTION_LONG_OPT = "detection";
 	public static final String VERBOSE_LONG_OPT = "verbose";
@@ -134,6 +135,9 @@ public class CLIApp {
 				boolean deActivatePatientMatching = cmd.hasOption(NPM_OPT);
 				String dateFormat = cmd.getOptionValue(D_OPT);
 
+				boolean lonestarLegacyValidation = cmd.hasOption(LONESTAR_OPT);
+
+
 				// --- Check Source files
 				File patients = new File(pFilePath);
 				File vaccines = new File(vFilePath);
@@ -155,7 +159,8 @@ public class CLIApp {
 							tmpDirLocation,
 							simpleDateFormat,
 							activePatientMatching,
-							deActivatePatientMatching
+							deActivatePatientMatching,
+							lonestarLegacyValidation
 					);
 				} else {
 					// --- Read Public Key
@@ -183,6 +188,7 @@ public class CLIApp {
 							simpleDateFormat,
 							activePatientMatching,
 							deActivatePatientMatching,
+							lonestarLegacyValidation,
 							version,
 							build,
 							mqeVersion,
@@ -242,7 +248,7 @@ public class CLIApp {
 		}
 	}
 
-	private static void runCliApp(ApplicationContext context, File output, ConfigurationPayload configurationPayload, String pFilePath, String vFilePath, String tmpDirLocation, DqDateFormat simpleDateFormat, boolean activePatientMatching, boolean deActivatePatientMatching, String version, String build, String mqeVersion, CryptoKey cryptoKey, boolean printAdf) throws Exception {
+	private static void runCliApp(ApplicationContext context, File output, ConfigurationPayload configurationPayload, String pFilePath, String vFilePath, String tmpDirLocation, DqDateFormat simpleDateFormat, boolean activePatientMatching, boolean deActivatePatientMatching, boolean lonestarLegacyValidation, String version, String build, String mqeVersion, CryptoKey cryptoKey, boolean printAdf) throws Exception {
 		if(cryptoKey.getPublicKey() == null) {
 			throw new PublicKeyException("No public key provided or bundled");
 		}
@@ -254,7 +260,7 @@ public class CLIApp {
 
 		// --- Configure Detection Engine
 		logger.info("Configuring the detection engine");
-		DetectionEngine detectionEngine = configureDetectionEngine(context, configurationPayload, deActivatePatientMatching, activePatientMatching, output);
+		DetectionEngine detectionEngine = configureDetectionEngine(context, configurationPayload, deActivatePatientMatching, activePatientMatching, lonestarLegacyValidation, output);
 
 		// --- Configure Local Report Engine
 		LocalReportEngine localReportEngine = configureLocalReportEngine(context, configurationPayload, output, detectionEngine);
@@ -290,7 +296,7 @@ public class CLIApp {
 		}
 	}
 
-	private static @NonNull DetectionEngine configureDetectionEngine(ApplicationContext context, ConfigurationPayload configurationPayload, boolean deActivatePatientMatching, boolean activePatientMatching, File output) throws Exception {
+	private static @NonNull DetectionEngine configureDetectionEngine(ApplicationContext context, ConfigurationPayload configurationPayload, boolean deActivatePatientMatching, boolean activePatientMatching, boolean lonestarLegacyValidation, File output) throws Exception {
 		DetectionEngine detectionEngine = context.getBean(DetectionEngine.class);
 		DetectionEngineConfiguration detectionEngineConfiguration = new DetectionEngineConfiguration();
 		detectionEngineConfiguration.setOutputDirectory(output.getAbsolutePath());
@@ -343,6 +349,7 @@ public class CLIApp {
 		options.addOption(PUB_OPT, "publicKey", true, "qDAR Public Key");
 		options.addOption(PM_OPT, "patientMatching", false, "Activate patient matching");
 		options.addOption(NPM_OPT, "noPatientMatching", false, "Deactivate patient matching");
+		options.addOption(LONESTAR_OPT, "lonestar", false, "Activate legacy validation against lonestar forecaster");
 		options.addOption(Option.builder().longOpt(DETECTION_LONG_OPT).hasArg().desc("Detection ID to test; may be repeated").build());
 		options.addOption(Option.builder().longOpt(VERBOSE_LONG_OPT).desc("Print each detection test row to the console").build());
 		return options;
@@ -380,7 +387,8 @@ public class CLIApp {
 			String tmpDirLocation,
 			DqDateFormat dateFormat,
 			boolean activePatientMatching,
-			boolean deActivatePatientMatching
+			boolean deActivatePatientMatching,
+			boolean lonestarLegacyValidation
 	) throws Exception {
 		String[] requestedDetections = cmd.getOptionValues(DETECTION_LONG_OPT);
 		if(requestedDetections == null || requestedDetections.length == 0) {
@@ -422,7 +430,8 @@ public class CLIApp {
 					vFilePath,
 					dateFormat,
 					output.toPath(),
-					temporaryDirectory
+					temporaryDirectory,
+					lonestarLegacyValidation
 			);
 		} catch(IllegalArgumentException e) {
 			throw new DetectionTestException(e.getMessage());

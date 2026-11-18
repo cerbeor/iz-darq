@@ -58,14 +58,15 @@ public class DetectionTestRunner {
 			String vaccinations,
 			DqDateFormat dateFormat,
 			Path outputDirectory,
-			Path temporaryDirectory
+			Path temporaryDirectory,
+			boolean lonestarLegacyValidation
 	) throws Exception {
 		if(selectedDetections == null || selectedDetections.isEmpty()) {
 			throw new IllegalArgumentException("At least one detection must be selected");
 		}
 
 		Files.createDirectories(outputDirectory);
-		configureDetectionEngine(configuration, selectedDetections, outputDirectory, temporaryDirectory);
+		configureDetectionEngine(configuration, selectedDetections, outputDirectory, temporaryDirectory, lonestarLegacyValidation);
 		configurationPayloadValidator.validateConfigurationPayload(configuration, true);
 
 		Path details = outputDirectory.resolve("detection-test-results.tsv");
@@ -110,7 +111,7 @@ public class DetectionTestRunner {
 		return result;
 	}
 
-	private void configureDetectionEngine(ConfigurationPayload configuration, List<String> selectedDetections, Path outputDirectory, Path temporaryDirectory) throws Exception {
+	private void configureDetectionEngine(ConfigurationPayload configuration, List<String> selectedDetections, Path outputDirectory, Path temporaryDirectory, boolean lonestarLegacyValidation) throws Exception {
 		filterConfigurationDetections(configuration, selectedDetections);
 
 		DetectionEngineConfiguration detectionEngineConfiguration = new DetectionEngineConfiguration();
