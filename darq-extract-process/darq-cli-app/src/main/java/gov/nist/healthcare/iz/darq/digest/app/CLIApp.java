@@ -302,11 +302,8 @@ public class CLIApp {
 		detectionEngineConfiguration.setOutputDirectory(output.getAbsolutePath());
 		detectionEngineConfiguration.setTemporaryDirectory(temporaryDirectory.toAbsolutePath().toString());
 		detectionEngineConfiguration.setConfigurationPayload(configurationPayload);
-		if(configurationPayload.getUseLonestarForecaster() || uselonestarLegacyValidation) {
-			detectionEngineConfiguration.addActiveProvider(AvailableDetectionEngines.DP_ID_MQE_LONESTAR);
-		} else {
-			detectionEngineConfiguration.addActiveProvider(AvailableDetectionEngines.DP_ID_MQE);
-		}
+		detectionEngineConfiguration.addActiveProvider(AvailableDetectionEngines.DP_ID_MQE);
+
 		if(!deActivatePatientMatching && (configurationPayload.isActivatePatientMatching() || activePatientMatching)) {
 			detectionEngineConfiguration.addActiveProvider(AvailableDetectionEngines.DP_ID_PM);
 		}
@@ -437,8 +434,7 @@ public class CLIApp {
 					vFilePath,
 					dateFormat,
 					output.toPath(),
-					temporaryDirectory,
-					lonestarLegacyValidation
+					temporaryDirectory
 			);
 		} catch(IllegalArgumentException e) {
 			throw new DetectionTestException(e.getMessage());

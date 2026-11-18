@@ -35,26 +35,18 @@ public class MQEDetectionProvider implements DetectionProvider {
 	private Set<DetectionDescriptor> configuredMqeDecriptors = new HashSet<>();
 	private final MQETransformService transformer = new MQETransformService();
 	private final static Logger logger = LoggerFactory.getLogger(MQEDetectionProvider.class.getName());
-	private boolean useLonestarLegacy = false;
 
-	public MQEDetectionProvider(boolean useLonestarLegacy) {
-		if (useLonestarLegacy) {
-			this.useLonestarLegacy = true;
-		} else {
-			Set<Detection> active =  ValidationRuleEntityLists.activeDetectionsForTargets(new HashSet<>(Arrays.asList(
-					TargetType.Patient,
-					TargetType.NextOfKin,
-					TargetType.Vaccination
-			)));
-			for(Detection d : active) {
-				allMqeDescriptors.put(d.getMqeMqeCode(), new DetectionDescriptor(d.getMqeMqeCode(), d.getDisplayText(),d.getTargetObject().toString(), active.contains(d), DetectionLifeCycleUtil.lifecycleStringFor(d)));
-			}
+	public MQEDetectionProvider() {
+		Set<Detection> active =  ValidationRuleEntityLists.activeDetectionsForTargets(new HashSet<>(Arrays.asList(
+				TargetType.Patient,
+				TargetType.NextOfKin,
+				TargetType.Vaccination
+		)));
+		for(Detection d : active) {
+			allMqeDescriptors.put(d.getMqeMqeCode(), new DetectionDescriptor(d.getMqeMqeCode(), d.getDisplayText(),d.getTargetObject().toString(), active.contains(d), DetectionLifeCycleUtil.lifecycleStringFor(d)));
 		}
 	}
 
-	public MQEDetectionProvider() {
-		this(false);
-	}
 
 	@Override
 	public void configure(DetectionEngineConfiguration configuration, List<DetectionProvider> before) {
@@ -72,7 +64,7 @@ public class MQEDetectionProvider implements DetectionProvider {
 		MessageValidator.INSTANCE.configure(configuredMqeCodes);
 		logger.info("MQE Validator Configured");
 		Set<ValidationRule> rules = RulePairBuilder.INSTANCE.getActiveValidationRules().getRules();
-		if (configuration.getConfigurationPayload().getUseLonestarForecaster() || useLonestarLegacy) {
+		if (configuration.getConfigurationPayload().getUseLonestarForecaster()) {
 			rules.removeIf(validationRule -> validationRule instanceof VaccineEvaluation);
 		} else {
 			rules.removeIf(validationRule -> validationRule instanceof VaccineEvaluationLonestar);

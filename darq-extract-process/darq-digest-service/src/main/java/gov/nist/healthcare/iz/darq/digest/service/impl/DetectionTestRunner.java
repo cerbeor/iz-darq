@@ -58,15 +58,14 @@ public class DetectionTestRunner {
 			String vaccinations,
 			DqDateFormat dateFormat,
 			Path outputDirectory,
-			Path temporaryDirectory,
-			boolean lonestarLegacyValidation
+			Path temporaryDirectory
 	) throws Exception {
 		if(selectedDetections == null || selectedDetections.isEmpty()) {
 			throw new IllegalArgumentException("At least one detection must be selected");
 		}
 
 		Files.createDirectories(outputDirectory);
-		configureDetectionEngine(configuration, selectedDetections, outputDirectory, temporaryDirectory, lonestarLegacyValidation);
+		configureDetectionEngine(configuration, selectedDetections, outputDirectory, temporaryDirectory);
 		configurationPayloadValidator.validateConfigurationPayload(configuration, true);
 
 		Path details = outputDirectory.resolve("detection-test-results.tsv");
@@ -111,18 +110,15 @@ public class DetectionTestRunner {
 		return result;
 	}
 
-	private void configureDetectionEngine(ConfigurationPayload configuration, List<String> selectedDetections, Path outputDirectory, Path temporaryDirectory, boolean lonestarLegacyValidation) throws Exception {
+	private void configureDetectionEngine(ConfigurationPayload configuration, List<String> selectedDetections, Path outputDirectory, Path temporaryDirectory) throws Exception {
 		filterConfigurationDetections(configuration, selectedDetections);
 
 		DetectionEngineConfiguration detectionEngineConfiguration = new DetectionEngineConfiguration();
 		detectionEngineConfiguration.setOutputDirectory(outputDirectory.toAbsolutePath().toString());
 		detectionEngineConfiguration.setTemporaryDirectory(temporaryDirectory.toAbsolutePath().toString());
 		detectionEngineConfiguration.setConfigurationPayload(configuration);
-		if(configuration.getUseLonestarForecaster() || lonestarLegacyValidation) {
-			detectionEngineConfiguration.addActiveProvider(AvailableDetectionEngines.DP_ID_MQE_LONESTAR);
-		} else {
-			detectionEngineConfiguration.addActiveProvider(AvailableDetectionEngines.DP_ID_MQE);
-		}
+		detectionEngineConfiguration.addActiveProvider(AvailableDetectionEngines.DP_ID_MQE);
+
 		if(configuration.isActivatePatientMatching()) {
 			detectionEngineConfiguration.addActiveProvider(AvailableDetectionEngines.DP_ID_PM);
 		}
